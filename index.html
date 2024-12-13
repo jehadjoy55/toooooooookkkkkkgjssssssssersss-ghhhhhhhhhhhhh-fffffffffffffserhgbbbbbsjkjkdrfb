@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divine Love Letter</title>
+    <style>
+        /* Dark Theme ARGB Background Animation */
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background-color: #121212; /* Dark background for the body */
+            color: #fff;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, #2e2e2e, #1c1c1c, #000000);
+            animation: gradientShift 10s infinite linear;
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Interactive Stars */
+        .background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 2px, transparent 3px);
+            background-size: 25px 25px;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Gift Wrap */
+        #giftWrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            color: #fff;
+        }
+
+        .ribbon {
+            background: linear-gradient(90deg, #ff4444, #ff8888);
+            width: 120px;
+            height: 300px;
+            position: relative;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(255, 85, 85, 0.9);
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
+
+        .ribbon:before, .ribbon:after {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 30px;
+            background: linear-gradient(90deg, #ff4444, #ff8888);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .ribbon:before {
+            left: -15px;
+            transform: rotate(-45deg);
+        }
+
+        .ribbon:after {
+            right: -15px;
+            transform: rotate(45deg);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .unwrap-text {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            animation: blinkText 1.5s infinite;
+            color: #ffcccc;
+        }
+
+        @keyframes blinkText {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0; }
+        }
+
+        /* Letter Container */
+        #letterContainer {
+            display: none;
+            padding: 20px;
+            background: #1e1e1e;
+            color: #f5f5f5;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            margin: 20px auto;
+            overflow-y: auto;
+            max-height: 80vh;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .letter h1 {
+            font-size: 2.5rem;
+            color: #ff8888;
+            text-align: center;
+        }
+
+        .letter p {
+            font-size: 1.4rem;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .poem {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            font-style: italic;
+            color: #ffcccc;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- ARGB Background -->
+    <div class="background"></div>
+
+    <!-- Gift Wrap -->
+    <div id="giftWrap">
+        <div class="ribbon" id="ribbon"></div>
+        <div class="unwrap-text">Tap the Ribbon to Open</div>
+    </div>
+
+    <!-- Hidden Letter -->
+    <div id="letterContainer">
+        <div class="letter">
+            <h1>প্রিয়তমা মাহু,</h1>
+            <p>
+                তারা নামটি যেন আমার জীবনের প্রথম আলোকের সর্বতকের প্রার্থনা।
+            </p>
+            <p>
+                তোমার ডাক্ষিণীর গভীরতায়, আমার মনে দিব্বতের প্রতিচ্ছবাসীত প্রেরণা।
+            </p>
+            <p>
+                তোমার ভালোবাসা হোক চিরকাল। তুমি আমার হৃদয়ের গভীরতম সত্য।
+            </p>
+
+            <!-- Poem -->
+            <div class="poem">
+                <p>রাতের তারা যেমন আলো ছড়ায়,</p>
+                <p>তোমার চোখে তেমন প্রেমের ঝলক।</p>
+                <p>প্রতিটি শ্বাসে তোমার নাম,</p>
+                <p>তুমি আমার জীবনের পূর্ণতা।</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" src="44.mp3" loop></audio>
+
+    <script>
+        const ribbon = document.getElementById("ribbon");
+        const giftWrap = document.getElementById("giftWrap");
+        const letterContainer = document.getElementById("letterContainer");
+        const backgroundMusic = document.getElementById("backgroundMusic");
+
+        ribbon.addEventListener("click", () => {
+            giftWrap.style.display = "none";
+            letterContainer.style.display = "block";
+            backgroundMusic.play();
+        });
+    </script>
+</body>
+</html>
